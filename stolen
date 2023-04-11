@@ -25,6 +25,12 @@ def read_tfluna_data():
                 temperature = (temperature/8.0) - 256.0 # temp scaling and offset
                 return distance/100.0,strength,temperature
 
+def set_samp_rate(samp_rate=100):# change the sample rate
+    samp_rate_packet = [0x5a,0x06,0x03,samp_rate,00,00] # sample rate byte array
+    ser.write(samp_rate_packet) # send sample rate instruction
+    time.sleep(0.1) # wait for change to take effect
+    return
+    
 if ser.isOpen() == False:
     ser.open() # open serial port if not open
 
