@@ -5,7 +5,7 @@ import numpy as np
 # TFLuna Lidar
 ##########################
 #
-ser = serial.Serial("/dev/ttymxc0", 115200,timeout=0) # mini UART serial device
+ser = serial.Serial("/dev/ttymxc2", 115200,timeout=0) # mini UART serial device
 #
 ############################
 # read ToF data from TF-Luna
