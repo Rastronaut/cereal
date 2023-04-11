@@ -1,6 +1,6 @@
 import serial,time
 import numpy as np
-
+ser = serial.Serial("/dev/ttymxc2", 115200,timeout=0) # mini UART serial device
 def read_tfluna_data():
     while True:
         counter = ser.in_waiting # count the number of bytes waiting to be read
@@ -79,3 +79,4 @@ def set_baudrate(baud_indx=4): # get version info
                 ser_new.write(info_packet) # try again if wrong data received
                 time.sleep(0.1) # wait 100ms
                 continue
+ser.close() # close serial port
