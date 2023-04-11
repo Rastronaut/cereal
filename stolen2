@@ -57,7 +57,7 @@ def set_baudrate(baud_indx=4): # get version info
     time.sleep(0.1) # wait to settle
     prev_ser.close() # close old serial port
     time.sleep(0.1) # wait to settle
-    ser_new =serial.Serial("/dev/serial0", baudrates[baud_indx],timeout=0) # new serial device
+    ser_new =serial.Serial("/dev/ttymxc2", baudrates[baud_indx],timeout=0) # new serial device
     if ser_new.isOpen() == False:
         ser_new.open() # open serial port if not open
     bytes_to_read = 8
