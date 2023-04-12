@@ -48,8 +48,9 @@ while True:
     for i in range(plot_pts):
         distance = read_tfluna_data() # read values
         dist_array.append(distance) # append distance value to array
+        avg = numpy.average(dist_array)
         
-        print('Distance: {0:2.2f} m, Average'.\
+        print('Distance: {0:2.2f} m', avg.\
                 format(distance)) # print sample data
     time.sleep(read_period)     # wait some time before printing next reading
     
