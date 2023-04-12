@@ -6,6 +6,8 @@ import numpy as np
 ##########################
 #
 ser = serial.Serial("/dev/ttymxc2", 115200,timeout=0) # mini UART serial device
+plot_pts = 10      # points for sample rate test
+read_period = 1.0   # specify time (seconds) between sensor print readings 
 #
 ############################
 # read ToF data from TF-Luna
@@ -33,8 +35,12 @@ def set_samp_rate(samp_rate=100):# change the sample rate
     
 if ser.isOpen() == False:
     ser.open() # open serial port if not open
+    
+for i in range(plot_pts):
+    distance, strength, temperature = read_tfluna_data() # read values
 
 distance,strength,temperature = read_tfluna_data() # read values
 print('Distance: {0:2.2f} m, Strength: {1:2.0f} / 65535 (16-bit), Chip Temperature: {2:2.1f} C'.\
               format(distance,strength,temperature)) # print sample data
+time.sleep(read_period)     # wait some time before printing next reading
 ser.close() # close serial port
