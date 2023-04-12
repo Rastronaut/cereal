@@ -45,12 +45,12 @@ if ser.isOpen() == False:
 print('Starting Sensor Readings...\n')
 
 while True:
-for i in range(plot_pts):
-    distance, strength, temperature = read_tfluna_data() # read values
-    dist_array.append(distance) # append distance value to array
+    for i in range(plot_pts):
+        distance, strength, temperature = read_tfluna_data() # read values
+        dist_array.append(distance) # append distance value to array
 
-    print('Distance: {0:2.2f} m, Strength: {1:2.0f} / 65535 (16-bit), Chip Temperature: {2:2.1f} C'.\
-              format(distance,strength,temperature)) # print sample data
+        print('Distance: {0:2.2f} m, Strength: {1:2.0f} / 65535 (16-bit), Chip Temperature: {2:2.1f} C'.\
+                format(distance,strength,temperature)) # print sample data
     
     time.sleep(read_period)     # wait some time before printing next reading
     
