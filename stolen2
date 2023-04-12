@@ -34,7 +34,7 @@ def read_tfluna_data():
 # Open /dev/ttymxc2 with baudrate 115200, and defaults of 8N1, no flow control
 ser = serial.Serial("/dev/ttymxc2", 115200,timeout=0) # mini UART serial device
 
-plot_pts = inf      # points for sample rate test
+plot_pts = 10      # points for sample rate test
 read_period = 1.0   # specify time (seconds) between sensor print readings 
 
 dist_array = []     # store distance values in an array (could use for plotting later)
@@ -44,6 +44,7 @@ if ser.isOpen() == False:
 
 print('Starting Sensor Readings...\n')
 
+while True:
 for i in range(plot_pts):
     distance, strength, temperature = read_tfluna_data() # read values
     dist_array.append(distance) # append distance value to array
