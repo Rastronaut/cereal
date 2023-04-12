@@ -25,7 +25,7 @@ def read_tfluna_data():
 
 def Average():
     ...
-    avg = numpy.average(dist_array)
+    avg = np.average(dist_array)
     return(avg)
 #######
 # Main
@@ -48,7 +48,7 @@ while True:
     for i in range(plot_pts):
         distance = read_tfluna_data() # read values
         dist_array.append(distance) # append distance value to array
-        avg = numpy.average(dist_array)
+        avg = np.average(dist_array)
         
         print('Distance: {0:2.2f} m', avg.\
                 format(distance)) # print sample data
