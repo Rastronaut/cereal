@@ -11,7 +11,7 @@ def read_tfluna_data():
     '''
     Function to read ToF data from TF-Luna
     Return:
-        Distance, Strength, and Temperature readings from TF-Luna
+        Distance readings from TF-Luna
     '''
     while True:
         counter = ser.in_waiting # count the number of bytes of the serial port
@@ -21,10 +21,7 @@ def read_tfluna_data():
 
             if bytes_serial[0] == 0x59 and bytes_serial[1] == 0x59: # check first two bytes
                 distance = bytes_serial[2] + bytes_serial[3]*256 # distance in next two bytes
-                strength = bytes_serial[4] + bytes_serial[5]*256 # signal strength in next two bytes
-                temperature = bytes_serial[6] + bytes_serial[7]*256 # temp in next two bytes
-                temperature = (temperature/8.0) - 256.0 # temp scaling and offset
-                return distance/100.0,strength,temperature
+                return distance/100.0
 
 def Average():
     ...
@@ -49,12 +46,11 @@ print('Starting Sensor Readings...\n')
 
 while True:
     for i in range(plot_pts):
-        distance, strength, temperature = read_tfluna_data() # read values
+        distance = read_tfluna_data() # read values
         dist_array.append(distance) # append distance value to array
         
-        print('Distance: {0:2.2f} m, Strength: {1:2.0f} / 65535 (16-bit), Chip Temperature: {2:2.1f} C'.\
-                format(distance,strength,temperature)) # print sample data
-        print(Average)
+        print('Distance: {0:2.2f} m, Average'.\
+                format(distance)) # print sample data
     time.sleep(read_period)     # wait some time before printing next reading
     
 print("\nDistance DataFrame: ", dist_array)   # show the recorded distance values
