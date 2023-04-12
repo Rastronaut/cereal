@@ -50,7 +50,7 @@ while True:
         dist_array.append(distance) # append distance value to array
         avg = np.average(dist_array)
         
-        print('Distance: {0:2.2f} m', avg.\
+        print('Distance: {0:2.2f} m, avg'.\
                 format(distance)) # print sample data
     time.sleep(read_period)     # wait some time before printing next reading
     
